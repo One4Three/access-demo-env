@@ -30,7 +30,7 @@ function App() {
   // useState("barley-facet-agg.uw.json");
   // useState("connected-scatterplot.uw.json");
 
-  const [props, setProps] = useState<{ spec: UmweltSpec; data: OlliDataset }>({ spec: penguin_spec, data: penguin_data });
+  const [props, setProps] = useState<{ spec: UmweltSpec; data: OlliDataset }>({ spec: choropleth_spec, data: choropleth_data });
   const [initialSpec, setInitialSpec] = useState<UmweltSpec>(null);
 
   useEffect(() => {
@@ -106,6 +106,242 @@ function App() {
 }
 
 export default App;
+
+const choropleth_spec: UmweltSpec = {
+  data: {
+    values: [],
+  },
+  key: ['State'],
+  fields: [
+    {
+      name: 'State',
+      type: 'nominal',
+      encodings: [
+        {
+          property: 'detail',
+          unit: 'vis_unit_0',
+        },
+      ],
+    },
+    {
+      name: 'Rate',
+      type: 'quantitative',
+      encodings: [
+        {
+          property: 'color',
+          unit: 'vis_unit_0',
+        },
+      ],
+    },
+  ],
+  visual: {
+    units: [
+      {
+        name: 'vis_unit_0',
+        mark: 'geoshape',
+        projection: {
+          type: 'albersUsa',
+        },
+        encoding: {
+          detail: {
+            field: 'State',
+          },
+          color: {
+            field: 'Rate',
+            scale: {
+              scheme: 'blues',
+            },
+          },
+        },
+      },
+    ],
+    composition: 'layer',
+  },
+  audio: null,
+};
+
+const choropleth_data = [
+  {
+    State: 'California',
+    Rate: 72,
+    type: 'Feature',
+    geometry: {
+      type: 'Polygon',
+      coordinates: [[
+        [-124.4, 32.5],
+        [-114.1, 32.5],
+        [-114.1, 42.0],
+        [-124.4, 42.0],
+        [-124.4, 32.5],
+      ]],
+    },
+  },
+  {
+    State: 'Washington',
+    Rate: 48,
+    type: 'Feature',
+    geometry: {
+      type: 'Polygon',
+      coordinates: [[
+        [-124.8, 45.5],
+        [-116.9, 45.5],
+        [-116.9, 49.1],
+        [-124.8, 49.1],
+        [-124.8, 45.5],
+      ]],
+    },
+  },
+  {
+    State: 'Arizona',
+    Rate: 58,
+    type: 'Feature',
+    geometry: {
+      type: 'Polygon',
+      coordinates: [[
+        [-114.8, 31.3],
+        [-109.0, 31.3],
+        [-109.0, 37.0],
+        [-114.8, 37.0],
+        [-114.8, 31.3],
+      ]],
+    },
+  },
+  {
+    State: 'Colorado',
+    Rate: 67,
+    type: 'Feature',
+    geometry: {
+      type: 'Polygon',
+      coordinates: [[
+        [-109.0, 37.0],
+        [-102.0, 37.0],
+        [-102.0, 41.0],
+        [-109.0, 41.0],
+        [-109.0, 37.0],
+      ]],
+    },
+  },
+  {
+    State: 'Texas',
+    Rate: 54,
+    type: 'Feature',
+    geometry: {
+      type: 'Polygon',
+      coordinates: [[
+        [-106.7, 25.8],
+        [-93.5, 25.8],
+        [-93.5, 36.5],
+        [-106.7, 36.5],
+        [-106.7, 25.8],
+      ]],
+    },
+  },
+  {
+    State: 'Illinois',
+    Rate: 52,
+    type: 'Feature',
+    geometry: {
+      type: 'Polygon',
+      coordinates: [[
+        [-91.5, 36.8],
+        [-87.0, 36.8],
+        [-87.0, 42.5],
+        [-91.5, 42.5],
+        [-91.5, 36.8],
+      ]],
+    },
+  },
+  {
+    State: 'Georgia',
+    Rate: 46,
+    type: 'Feature',
+    geometry: {
+      type: 'Polygon',
+      coordinates: [[
+        [-85.6, 30.3],
+        [-80.8, 30.3],
+        [-80.8, 35.0],
+        [-85.6, 35.0],
+        [-85.6, 30.3],
+      ]],
+    },
+  },
+  {
+    State: 'Florida',
+    Rate: 61,
+    type: 'Feature',
+    geometry: {
+      type: 'Polygon',
+      coordinates: [[
+        [-87.7, 24.5],
+        [-80.0, 24.5],
+        [-80.0, 31.0],
+        [-87.7, 31.0],
+        [-87.7, 24.5],
+      ]],
+    },
+  },
+  {
+    State: 'North Carolina',
+    Rate: 53,
+    type: 'Feature',
+    geometry: {
+      type: 'Polygon',
+      coordinates: [[
+        [-84.3, 33.8],
+        [-75.4, 33.8],
+        [-75.4, 36.7],
+        [-84.3, 36.7],
+        [-84.3, 33.8],
+      ]],
+    },
+  },
+  {
+    State: 'Michigan',
+    Rate: 37,
+    type: 'Feature',
+    geometry: {
+      type: 'Polygon',
+      coordinates: [[
+        [-90.5, 41.7],
+        [-82.1, 41.7],
+        [-82.1, 48.3],
+        [-90.5, 48.3],
+        [-90.5, 41.7],
+      ]],
+    },
+  },
+  {
+    State: 'New York',
+    Rate: 64,
+    type: 'Feature',
+    geometry: {
+      type: 'Polygon',
+      coordinates: [[
+        [-79.8, 40.5],
+        [-71.8, 40.5],
+        [-71.8, 45.1],
+        [-79.8, 45.1],
+        [-79.8, 40.5],
+      ]],
+    },
+  },
+  {
+    State: 'Massachusetts',
+    Rate: 69,
+    type: 'Feature',
+    geometry: {
+      type: 'Polygon',
+      coordinates: [[
+        [-73.6, 41.2],
+        [-69.8, 41.2],
+        [-69.8, 42.9],
+        [-73.6, 42.9],
+        [-73.6, 41.2],
+      ]],
+    },
+  },
+] as unknown as OlliDataset;
 
 const penguin_spec: UmweltSpec = {
   data: {

@@ -19,6 +19,7 @@ type ScaleDomain = {
 }; //  | "type"
 type ScaleRange = {
   range?: number[] | string[];
+  scheme?: string;
 }; //  | "reverse"
 
 export type MeasureType = Exclude<Type, 'geojson'>;
@@ -99,6 +100,7 @@ export type VisualEncoding = {
 export type VisualUnitSpec = {
   name: string;
   mark: Mark;
+  projection?: any;
   encoding: VisualEncoding;
 };
 

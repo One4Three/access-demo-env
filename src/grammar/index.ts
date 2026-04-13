@@ -75,6 +75,7 @@ export function umweltToVegaLiteSpec(spec: UmweltSpec, data: OlliDataset): VlSpe
         }
       });
       return {
+        ...(unit.projection ? { projection: unit.projection } : {}),
         mark: unit.mark === 'line' ? { type: 'line', point: true } : unit.mark,
         encoding: {
           ...encoding,
@@ -116,6 +117,9 @@ export function umweltToVegaLiteSpec(spec: UmweltSpec, data: OlliDataset): VlSpe
     } else if (xFieldDef?.type === 'quantitative' && yFieldDef?.type !== 'quantitative') {
       params[0]['select'] = { type: 'interval', encodings: ['y'] };
     }
+  } else if (spec.visual.units[0].mark === 'geoshape') {
+    params[0].select = 'point';
+    params[1].select = 'point';
   }
 
   const condition = (encoding, paramName, value, empty?) => {
